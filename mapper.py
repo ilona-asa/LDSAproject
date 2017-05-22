@@ -7,6 +7,7 @@ rootdir ='/home/alekodu/Downloads/Large Datasets for Scientific Applications/Min
 for user in os.listdir(rootdir):
 	for sent in os.listdir(rootdir+'/'+user):
 		if (sent == 'sent_items'):
+                        print '%s\t%s' % ('sentFolders', 1)
 			for mail in os.listdir(rootdir+'/'+user+'/'+sent):
 				#print mail
 				if os.path.isfile(rootdir+'/'+user+'/'+sent+'/'+mail):
@@ -14,26 +15,23 @@ for user in os.listdir(rootdir):
 					#print f.readlines()
 					
 					for line in f:
-						line = line.strip()
-						# split the line into words
-						words = line.split()
-						#print words[0]
-						if 'Date:' in words[0]:
-								date_temp = words[1]
-								date = date_temp[:-1]
-								#print date
-				
-						if 'From:' in words[0]:
-								sender =  words[1]
-								break
-				
+						# remove leading and trailing whitespace
+                                                line = line.strip()
+                                                words = line.split()
+                                                if words != []:
+                                                        if 'Message-ID:' in words[0]:
+                                                                DatePossible = True
+                                                                FromPossible = True
+                                                                print '%s\t%s' % ('emailCount', 1)
 
-						# increase counters
-						#for word in words:
-							# write the results to STDOUT (standard output);
-							# what we output here will be the input for the
-							# Reduce step, i.e. the input for reducer.py
-							#
-							# tab-delimited; the trivial word count is 1
-					print '%s\t%s' % ((sender,date), 1)
+                                                        if 'Date:' in words[0] and DatePossible:
+                                                                date_temp = words[1]
+                                                                date = date_temp[:-1]
+                                                                DatePossible = False
+
+                                                        if 'From:' in words[0] and FromPossible:
+                                                                sender =  words[1]
+                                                                FromPossible = False
+
+                                                                print '%s\t%s' % ((sender,date), 1)
 					f.close()
