@@ -22,6 +22,8 @@ for user in os.listdir(rootdir):
                                                         if 'Message-ID:' in words[0]:
                                                                 DatePossible = True
                                                                 FromPossible = True
+                                                                sender = None
+                                                                date = None
                                                                 print '%s\t%s' % ('emailCount', 1)
 
                                                         if 'Date:' in words[0] and DatePossible:
@@ -32,6 +34,8 @@ for user in os.listdir(rootdir):
                                                         if 'From:' in words[0] and FromPossible:
                                                                 sender =  words[1]
                                                                 FromPossible = False
-
-                                                                print '%s\t%s' % ((sender,date), 1)
+                                                                if 'enron' in words[1]:
+                                                                        print '%s\t%s' % ((sender,date), 1)
+                                                                else:
+                                                                        break
 					f.close()
