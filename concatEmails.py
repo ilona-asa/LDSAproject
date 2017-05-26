@@ -31,8 +31,8 @@ for user in os.listdir(rootdir):
 					
 					#Open the email and write it to the current concat file
 					with open(f) as infile:
-					
-						outfile.write(infile.read())
+						for line in infile
+							outfile.write(line)
 					
 					#Checks if the file is above the recomended 64 MB, if it isn't, it keeps writing in it
 					#If this is too slow, we could maybe only check after each sent folder.
