@@ -9,16 +9,21 @@ rootdir ='C:/Users/Jonas/Documents/UU/LDSA/projectemails/testmail'
 i = 1
 
 for user in os.listdir(rootdir):
+	print(user)
 	for sent in os.listdir(rootdir+'/'+user):
 		if sent == 'sent_items':
 			
 			#Picks all the files
 			files = glob.glob(rootdir+'/'+user+'/'+sent+'/*')
+			
+			print(files)
+			
 			#Open the file to write in, might have to fix path!
 			with open(rootdir+'/'+"concatEmails"+str(i)+".txt", "wb") as outfile:
 			
 				#Opens the files in the current folder
 				for f in files:
+				
 					#Open the email and write it to the current concat file
 					with open(f, "rb") as infile:
 					
