@@ -3,10 +3,8 @@
 import os
 import glob
 
-os.sep = '/'
-
 #IMPORTANT: Root directory to the mail below
-rootdir ='C:/Users/Jonas/Documents/UU/LDSA/projectemails/testmail'
+rootdir ='/home/.../maildir'
 
 i = 1
 
@@ -18,7 +16,8 @@ for user in os.listdir(rootdir):
 			
 			#Picks all the files
 			files = glob.glob(rootdir+'/'+user+'/'+sent+'/*.')
-			#Open the file to write in, might have to fix path!
+			
+			#Open the file to append to. They are created in the same folder as the users.
 			with open(rootdir+'/'+"concatEmails"+str(i)+".txt", "a") as outfile:
 			
 				#Opens the files in the current folder
@@ -27,7 +26,6 @@ for user in os.listdir(rootdir):
 					#Converts to correct file path
 					fbase = os.path.basename(f)
 					f = rootdir+'/'+user+'/'+sent+'/'+fbase
-					print(f)
 					
 					#Open the email and write it to the current concat file
 					with open(f) as infile:
