@@ -13,12 +13,13 @@ i = 1
 for user in os.listdir(rootdir):
 	print(user)
 	for sent in os.listdir(rootdir+'/'+user):
+		#Select what folders to read
 		if sent == 'sent_items':
 			
 			#Picks all the files
 			files = glob.glob(rootdir+'/'+user+'/'+sent+'/*.')
 			#Open the file to write in, might have to fix path!
-			with open(rootdir+'/'+"concatEmails"+str(i)+".txt", "wb") as outfile:
+			with open(rootdir+'/'+"concatEmails"+str(i)+".txt", "w") as outfile:
 			
 				#Opens the files in the current folder
 				for f in files:
@@ -29,7 +30,7 @@ for user in os.listdir(rootdir):
 					print(f)
 					
 					#Open the email and write it to the current concat file
-					with open(f, "rb") as infile:
+					with open(f) as infile:
 					
 						outfile.write(infile.read())
 					
@@ -43,7 +44,7 @@ for user in os.listdir(rootdir):
 						#Seem not to be needed
 						#outfile.close
 						
-						outfile = open(rootdir+'/'+"concatEmails"+str(i)+".txt", "wb")
+						outfile = open(rootdir+'/'+"concatEmails"+str(i)+".txt", "w")
 						
 					#If we then dare to remove the files afterwards
 					#os.remove(f)
