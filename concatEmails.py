@@ -4,23 +4,21 @@ import os
 import glob
 
 #IMPORTANT: Root directory to the mail below
-rootdir ='/home/.../maildir'
+rootdir ='C:/Users/Jonas/Documents/UU/LDSA/projectemails/testmail'
 
 i = 1
 
 for user in os.listdir(rootdir):
 	for sent in os.listdir(rootdir+'/'+user):
-		if (sent == 'sent_items'):
+		if sent == 'sent_items':
 			
-			#Needs to check file type if they are txt or not!
-			files = glob.glob(rootdir+'/'+user+'/'+'*.txt')
-
+			#Picks all the files
+			files = glob.glob(rootdir+'/'+user+'/'+sent+'/*')
 			#Open the file to write in, might have to fix path!
 			with open(rootdir+'/'+"concatEmails"+str(i)+".txt", "wb") as outfile:
 			
 				#Opens the files in the current folder
 				for f in files:
-					
 					#Open the email and write it to the current concat file
 					with open(f, "rb") as infile:
 					
