@@ -12,7 +12,7 @@ for user in os.listdir(rootdir):
 	print(user)
 	for sent in os.listdir(rootdir+'/'+user):
 		#Select what folders to read
-		if sent == 'sent_items':
+		if sent == 'sent_items' or sent == 'sent' or sent == '_sent_mail':
 			
 			#Picks all the files
 			files = glob.glob(rootdir+'/'+user+'/'+sent+'/*.')
