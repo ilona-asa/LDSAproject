@@ -19,7 +19,7 @@ for user in os.listdir(rootdir):
 			#Picks all the files
 			files = glob.glob(rootdir+'/'+user+'/'+sent+'/*.')
 			#Open the file to write in, might have to fix path!
-			with open(rootdir+'/'+"concatEmails"+str(i)+".txt", "w") as outfile:
+			with open(rootdir+'/'+"concatEmails"+str(i)+".txt", "a") as outfile:
 			
 				#Opens the files in the current folder
 				for f in files:
@@ -31,7 +31,7 @@ for user in os.listdir(rootdir):
 					
 					#Open the email and write it to the current concat file
 					with open(f) as infile:
-						for line in infile
+						for line in infile:
 							outfile.write(line)
 					
 					#Checks if the file is above the recomended 64 MB, if it isn't, it keeps writing in it
@@ -42,9 +42,9 @@ for user in os.listdir(rootdir):
 						i += 1
 
 						#Seem not to be needed
-						#outfile.close
+						outfile.close
 						
-						outfile = open(rootdir+'/'+"concatEmails"+str(i)+".txt", "w")
+						outfile = open(rootdir+'/'+"concatEmails"+str(i)+".txt", "a")
 						
 					#If we then dare to remove the files afterwards
 					#os.remove(f)
