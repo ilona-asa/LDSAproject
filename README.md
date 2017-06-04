@@ -11,6 +11,13 @@
 8. readfiles.py is a eksperimental script to read files from enron folder
 9. reducer.py is a script used as reducer in hadoop
 
+# How to configure the Hadoop cluster
+
+1. Follow the instructions given in the following tutorials:
+* http://khangaonkar.blogspot.se/2014/02/hadoop-2x-yarn-cluster-setup-tutorial.htm
+* https://linoxide.com/cluster/setup-hadoop-multi-node-cluster-ubuntu/
+2. As trubleshooting, use the configuration files given in the folders hadoop_master_conf and hadoop_slave_conf. The .xml files should compared to the ones in the path $HADOOP_HOME/etc/hadoop and the hosts file with the file /etc/hosts	.
+
 # How to run the experiment
 1. Put data into HDFS storage:
 	- hdfs dfs -mkdir /input
