@@ -44,8 +44,6 @@ for user in os.listdir(rootdir):
 						
 						outfile = open(rootdir+'/'+"concatEmails"+str(i)+".txt", "a")
 						
-					#If we then dare to remove the files afterwards
-					#os.remove(f)
 					
 					
 

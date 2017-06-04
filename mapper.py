@@ -9,27 +9,27 @@ for user in os.listdir(rootdir):
 		if (sent == 'sent_items'):
                         print '%s\t%s' % ('sentFolders', 1)
 			for mail in os.listdir(rootdir+'/'+user+'/'+sent):
-				#print mail
+				
 				if os.path.isfile(rootdir+'/'+user+'/'+sent+'/'+mail):
 					f = open(rootdir+'/'+user+'/'+sent+'/'+mail, 'r')
-					#print f.readlines()
 					
 					for line in f:
 						# remove leading and trailing whitespace
                                                 line = line.strip()
                                                 words = line.split()
                                                 if words != []:
+                                                        # use Message-ID as unique identifier of 1 email
                                                         if 'Message-ID:' in words[0]:
                                                                 DatePossible = True
                                                                 FromPossible = True
                                                                 sender = None
                                                                 date = None
-
+                                                        # search for date abrreviation
                                                         if 'Date:' in words[0] and DatePossible:
                                                                 date_temp = words[1]
                                                                 date = date_temp[:-1]
                                                                 DatePossible = False
-
+                                                        # search for sender from enron account
                                                         if 'From:' in words[0] and FromPossible:
                                                                 sender =  words[1]
                                                                 FromPossible = False
