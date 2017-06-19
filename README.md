@@ -21,11 +21,15 @@
 2. As trubleshooting, use the configuration files given in the folders hadoop_master_conf and hadoop_slave_conf. The .xml files should compared to the ones in the path $HADOOP_HOME/etc/hadoop and the hosts file with the file /etc/hosts.
 
 # How to run the experiment
+
 1. Put data into HDFS storage:
 	- hdfs dfs -mkdir /input
 	- hdfs dfs -put local_path /input
 2. Run hadoop command:
 	- hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.3.jar -file /mnt/volume/project/mapper_hadoop.py -mapper mapper_hadoop.py -file /mnt/volume/project/reducer.py -reducer reducer.py -input /input/* -output /output -verbose
+3. To multiply files:
+	- for i in {1..100}; do cp concatEmails1.txt "concatEmails$i.txt"; done
+
 
 # Setup git locally
 git clone https://github.com/ilona-asa/LDSAproject.git
